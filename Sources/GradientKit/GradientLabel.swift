@@ -1,5 +1,5 @@
 //
-//  Gradient.swift
+//  GradientLabel.swift
 //
 //
 //  Created by Kyle on 2024/5/14.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-open class GradientView: UIView, GradientElement {
+open class GradientLabel: UILabel, GradientElement {
     public var gradient: Gradient {
         didSet {
             gradient.update(layer: gradientLayer)
@@ -21,7 +21,7 @@ open class GradientView: UIView, GradientElement {
     }
         
     @available(*, unavailable)
-    public override init(frame: CGRect) {
+    override public init(frame _: CGRect) {
         fatalError("init(frame:) has not been implemented")
     }
     
@@ -30,7 +30,7 @@ open class GradientView: UIView, GradientElement {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override class var layerClass: AnyClass {
+    override public class var layerClass: AnyClass {
         CAGradientLayer.self
     }
     
@@ -44,7 +44,10 @@ import SwiftUI
 
 @available(iOS 17, *)
 #Preview {
-    GradientView(gradient: .init(colors: [.red, .blue]))
+    let label = GradientLabel(gradient: .init(colors: [.red, .blue]))
+    label.text = "Test Label"
+    label.textColor = .white
+    return label
 }
 
 #endif
